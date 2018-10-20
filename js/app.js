@@ -1,11 +1,14 @@
 // Enemies our player must avoid
-var Enemy = function() {
+let Enemy = function() {
     // Variables applied to each of our instances go here,
     // we've provided one for you to get started
 
     // The image/sprite for our enemies, this uses
     // a helper we've provided to easily load images
+
+    // x and y position
     this.sprite = 'images/enemy-bug.png';
+    this.pos = [100,50];
 };
 
 // Update the enemy's position, required method for game
@@ -14,6 +17,12 @@ Enemy.prototype.update = function(dt) {
     // You should multiply any movement by the dt parameter
     // which will ensure the game runs at the same speed for
     // all computers.
+
+    //if enemy is in field of play
+      //move forward
+      //change x by speed * dt
+    //else
+      //reset to start
 };
 
 // Draw the enemy on the screen, required method for game
@@ -24,6 +33,35 @@ Enemy.prototype.render = function() {
 // Now write your own player class
 // This class requires an update(), render() and
 // a handleInput() method.
+class mainPlayer {
+  constructor() {
+    this.x = 0;
+    this.y - 0;
+    this.sprite = 'images/char-boy.png';
+  }
+  render() {
+    ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+  }
+
+
+
+  //properties
+    //x position
+    //y position
+    //sprite images
+  //methods
+    //update position
+      //check collision
+        // player collide with Enemy
+      //win
+        //player reach water
+      //render
+        //draw player according to x and y
+      //Handle handleInput
+        //update player position x and y according to input
+      //reset Player
+        //move player back to start position
+}
 
 
 // Now instantiate your objects.
