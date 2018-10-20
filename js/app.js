@@ -42,6 +42,9 @@ class mainPlayer {
   render() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
   }
+}
+
+const player = new mainPlayer();
 
 
 
@@ -61,7 +64,6 @@ class mainPlayer {
         //update player position x and y according to input
       //reset Player
         //move player back to start position
-}
 
 
 // Now instantiate your objects.
