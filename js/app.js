@@ -35,13 +35,44 @@ Enemy.prototype.render = function() {
 // a handleInput() method.
 class mainPlayer {
   constructor() {
-    this.x = 0;
-    this.y - 0;
+    this.x = 202;
+    this.y = 83*4;
     this.sprite = 'images/char-boy.png';
   }
+
+  //render
+    //draw player according to x and y
   render() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
   }
+
+  //Handle handleInput
+    //update player position x and y according to input
+
+  handleInput(key) {
+    if(this.x > 0) {
+      if(key === "left") {
+          this.x -= 101;
+        }
+      }
+    if(this.x<404) {
+      if(key === "right") {
+        this.x += 101;
+      }
+    }
+
+    if(this.y>0) {
+      if(key === "up") {
+        this.y -= 83;
+      }
+    }
+    if(this.y<83*5) {
+      if(key === "down") {
+        this.y += 83;
+      }
+    }
+  }
+
 }
 
 const player = new mainPlayer();
@@ -58,10 +89,8 @@ const player = new mainPlayer();
         // player collide with Enemy
       //win
         //player reach water
-      //render
-        //draw player according to x and y
-      //Handle handleInput
-        //update player position x and y according to input
+
+
       //reset Player
         //move player back to start position
 
