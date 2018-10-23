@@ -24,6 +24,8 @@ var Engine = (function(global) {
         ctx = canvas.getContext('2d'),
         lastTime;
 
+    const replayButton = document.querySelector('.modal-buttons');
+
     canvas.width = 505;
     canvas.height = 606;
     doc.body.appendChild(canvas);
@@ -55,7 +57,21 @@ var Engine = (function(global) {
         /* Use the browser's requestAnimationFrame function to call this
          * function again as soon as the browser is able to draw another frame.
          */
-        win.requestAnimationFrame(main);
+
+        if(player.y === 0) {
+          win.cancelAnimationFrame(main);
+          toggleModalOn();
+          replayButton.addEventListener('click', function () {
+            toggleModalOff();
+            player.reset();
+            win.requestAnimationFrame(main);
+          });
+        }  else {
+          win.requestAnimationFrame(main);
+        }
+
+
+
     }
 
     /* This function does some initial setup that should only occur once,

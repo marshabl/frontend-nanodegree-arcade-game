@@ -1,13 +1,5 @@
 // Enemies our player must avoid
 let Enemy = function(x, y, speed) {
-    // Variables applied to each of our instances go here,
-    // we've provided one for you to get started
-
-    // The image/sprite for our enemies, this uses
-    // a helper we've provided to easily load images
-
-    // x and y position
-
     this.sprite = 'images/enemy-bug.png';
     this.x = x;
     this.y = y;
@@ -51,10 +43,7 @@ class mainPlayer {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
   }
 
-  //Handle handleInput
-    //update player position x and y according to input
-
-
+  //update player position x and y according to input
   handleInput(key) {
     if(this.x > 0) {
       if(key === "left") {
@@ -79,41 +68,33 @@ class mainPlayer {
     }
   }
 
+  //update position, checkcollisions, reset if collision, win and add modal
+  reset() {
+    this.x = this.xstart;
+    this.y = this.ystart;
+  }
+
   update() {
     for (let enemy of allEnemies) {
       if(this.y === enemy.y && enemy.x + 50 > this.x && enemy.x - 50 < this.x) {
-        this.x = this.xstart;
-        this.y = this.ystart;
+        this.reset();
       }
-
-    }
-    if(this.y === 0) {
-      console.log('win');
     }
   }
 }
 
 
+function toggleModalOff() {
+  const modal = document.querySelector('.modal-background');
+  modal.classList.add('hide');
+}
+
+function toggleModalOn() {
+  const modal = document.querySelector('.modal-background');
+  modal.classList.remove('hide');
+}
 
 const player = new mainPlayer();
-
-
-
-
-  //methods
-    //update position
-      //check collision
-        // player collide with Enemy
-      //win
-        //player reach water
-
-
-      //reset Player
-        //move player back to start position
-
-
-// Now instantiate your objects.
-// Place all enemy objects in an array called allEnemies
 
 allEnemies = [];
 const bug1 = new Enemy(0,83/2,75)
