@@ -1,5 +1,5 @@
 // Enemies our player must avoid
-let Enemy = function() {
+let Enemy = function(x, y, speed) {
     // Variables applied to each of our instances go here,
     // we've provided one for you to get started
 
@@ -7,8 +7,11 @@ let Enemy = function() {
     // a helper we've provided to easily load images
 
     // x and y position
+
     this.sprite = 'images/enemy-bug.png';
-    this.pos = [100,50];
+    this.x = x;
+    this.y = y;
+    this.speed = speed;
 };
 
 // Update the enemy's position, required method for game
@@ -23,6 +26,15 @@ Enemy.prototype.update = function(dt) {
       //change x by speed * dt
     //else
       //reset to start
+  if(this.x < 505) {
+    this.x += this.speed * dt;
+  } else {
+    this.x = 0;
+    this.x += this.speed * dt;
+  }
+
+
+
 };
 
 // Draw the enemy on the screen, required method for game
@@ -52,23 +64,23 @@ class mainPlayer {
   handleInput(key) {
     if(this.x > 0) {
       if(key === "left") {
-          this.x -= 101;
+          this.x -= 101/2;
         }
       }
     if(this.x<404) {
       if(key === "right") {
-        this.x += 101;
+        this.x += 101/2;
       }
     }
 
     if(this.y>0) {
       if(key === "up") {
-        this.y -= 83;
+        this.y -= 83/2;
       }
     }
     if(this.y<83*5) {
       if(key === "down") {
-        this.y += 83;
+        this.y += 83/2;
       }
     }
   }
@@ -79,10 +91,7 @@ const player = new mainPlayer();
 
 
 
-  //properties
-    //x position
-    //y position
-    //sprite images
+
   //methods
     //update position
       //check collision
@@ -97,7 +106,12 @@ const player = new mainPlayer();
 
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
-// Place the player object in a variable called player
+
+allEnemies = [];
+const bug1 = new Enemy(0,83/2,75)
+const bug2 = new Enemy(0,83+83/2,100)
+const bug3 = new Enemy(0,83*3, 123)
+allEnemies.push(bug1, bug2, bug3);
 
 
 
