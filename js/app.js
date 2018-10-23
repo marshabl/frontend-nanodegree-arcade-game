@@ -20,21 +20,12 @@ Enemy.prototype.update = function(dt) {
     // You should multiply any movement by the dt parameter
     // which will ensure the game runs at the same speed for
     // all computers.
-
-    //if enemy is in field of play
-      //move forward
-      //change x by speed * dt
-    //else
-      //reset to start
   if(this.x < 505) {
     this.x += this.speed * dt;
   } else {
     this.x = 0;
     this.x += this.speed * dt;
   }
-
-
-
 };
 
 // Draw the enemy on the screen, required method for game
@@ -47,8 +38,10 @@ Enemy.prototype.render = function() {
 // a handleInput() method.
 class mainPlayer {
   constructor() {
-    this.x = 202;
-    this.y = 83*4;
+    this.xstart = 202
+    this.ystart = 83*4
+    this.x = this.xstart;
+    this.y = this.ystart;
     this.sprite = 'images/char-boy.png';
   }
 
@@ -60,6 +53,7 @@ class mainPlayer {
 
   //Handle handleInput
     //update player position x and y according to input
+
 
   handleInput(key) {
     if(this.x > 0) {
@@ -85,7 +79,21 @@ class mainPlayer {
     }
   }
 
+  update() {
+    for (let enemy of allEnemies) {
+      if(this.y === enemy.y && enemy.x + 50 > this.x && enemy.x - 50 < this.x) {
+        this.x = this.xstart;
+        this.y = this.ystart;
+      }
+
+    }
+    if(this.y === 0) {
+      console.log('win');
+    }
+  }
 }
+
+
 
 const player = new mainPlayer();
 
@@ -110,7 +118,7 @@ const player = new mainPlayer();
 allEnemies = [];
 const bug1 = new Enemy(0,83/2,75)
 const bug2 = new Enemy(0,83+83/2,100)
-const bug3 = new Enemy(0,83*3, 123)
+const bug3 = new Enemy(0,83*2+83/2, 125)
 allEnemies.push(bug1, bug2, bug3);
 
 
